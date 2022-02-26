@@ -55,6 +55,7 @@
 #include "bbcp_Protocol.h"
 #include "bbcp_System.h"
 #include "bbcp_Timer.h"
+#include <execinfo.h>
   
 /******************************************************************************/
 /*                    L O C A L   D E F I N I T I O N S                       */
@@ -72,6 +73,16 @@ extern bbcp_BuffPool bbcp_BuffPool;
   
 extern bbcp_System   bbcp_OS;
 
+
+void handler(int sig) {
+    void *array[10];
+    size_t size;
+    size = backtrace(array, 10);
+    fprintf(stderr, "Error: signal %d:\n", sig);
+    backtrace_symbols_fd(array, size, STDERR_FILENO);
+    exit(1);
+}
+
 /******************************************************************************/
 /*                                  m a i n                                   */
 /******************************************************************************/
@@ -87,6 +98,9 @@ int main(int argc, char *argv[], char *envp[])
    double     xRate;
    bbcp_Timer Elapsed_Timer;
    const char *xType;
+
+   signal(SIGSEGV, handler);
+   signal(SIGABRT, handler);
 
 // Process configuration file
 //
