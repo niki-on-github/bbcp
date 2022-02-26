@@ -10,7 +10,7 @@ OBJDIR     = ../obj/$(OSVER)
 
 ENVCFLAGS  =    -Dunix -D_BSD -D_ALL_SOURCE
 
-ENVINCLUDE = -I. -I/usr/local/include -I/usr/include 
+ENVINCLUDE = -I. -I/usr/local/include -I/usr/include
 
 AIXLIBS    =  -q64 -L/usr/lib -lz -lpthreads
 
@@ -172,7 +172,7 @@ cleanall:
 usage:
 	@echo "Usage: make [echo | usage] [OPT=-DSUN6] [Sungcc]"
 
-echo:		
+echo:
 	@for f in $(SOURCE); do \
 	echo $$f ;\
 	done

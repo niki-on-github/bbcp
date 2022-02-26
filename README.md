@@ -11,3 +11,11 @@ Rsync is the default utility if we want synchronize data between two nodes or be
 ```bash
 bash ./build_and_install.sh
 ```
+
+## Usage
+
+### Send file to remote
+
+```bash
+bbcp -j -f -V -n -S "ssh -x -a -oBatchMode=yes -oGSSAPIAuthentication=no -oFallBackToRsh=no %4 %I -l %U %H bbcp" -e -E c32c -s 12 -P 10 testfile.mp4 root@10.0.0.70:/root/
+```
